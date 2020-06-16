@@ -59,7 +59,7 @@ def scagnostics(*args, bins=50, remove_outliers=True):
 
     cdef double[:] c_x = x
     cdef double[:] c_y = y
-    cdef int[:] c_length = np.array([x.shape[0]], dtype=np.dtype("i"))
+    cdef int[:] c_length = np.array([1000], dtype=np.dtype("i"))
     cdef int[:] c_bins = np.array([bins], dtype=np.dtype("i"))
     cdef int[:] c_outlierRmv = np.array([int(remove_outliers)], dtype=np.dtype("i"))
     cdef double[:] c_results = np.zeros(9 + 3 * 1000, dtype=np.double)
