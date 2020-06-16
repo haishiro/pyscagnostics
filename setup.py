@@ -9,7 +9,6 @@ except ModuleNotFoundError:
     USE_CYTHON = False
 
 import numpy as np
-
 from setuptools import find_packages, setup
 from setuptools.extension import Extension
 
