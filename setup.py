@@ -16,9 +16,9 @@ from setuptools.extension import Extension
 
 NAME = "pyscagnostics"
 DESCRIPTION = "Graph theoretic scatterplot diagnostics"
-URL = "https://github.com/haishiro/scagnostics"
+URL = "https://github.com/haishiro/pyscagnostics"
 REQUIRES_PYTHON = ">=3.7.0"
-VERSION = "0.0.1"
+VERSION = "0.1.0"
 
 REQUIRED = [
     "numpy>=1.18.1",
@@ -51,6 +51,9 @@ setup(
     ext_modules=extensions,
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     classifiers=[
+        "Development Status :: 3 - Alpha",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
+        "Topic :: Scientific/Engineering :: Information Analysis",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
