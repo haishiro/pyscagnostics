@@ -1,3 +1,8 @@
+pyscagnostics 0.1.0 --------------------
+
+* Convert wrapper to Python
+
+
 binostics 0.1.2 --------------------
 
 * changed package name

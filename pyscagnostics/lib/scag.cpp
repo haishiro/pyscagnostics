@@ -1,6 +1,5 @@
 #include "Scagnostics.h"
 
-#include <Rdefines.h>
 
 extern "C" {
   void
