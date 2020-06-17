@@ -77,4 +77,4 @@ def scagnostics(
     measures = {m[0]: m[1] for m in zip(MEASURE_NAMES, s)}
     bins = result[10:(10 + n * 3)].reshape((3, -1))
     
-    return measures, bins
+return measures, bins
