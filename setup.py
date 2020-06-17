@@ -15,7 +15,7 @@ from setuptools.extension import Extension
 NAME = "pyscagnostics"
 DESCRIPTION = "Graph theoretic scatterplot diagnostics"
 URL = "https://github.com/haishiro/pyscagnostics"
-REQUIRES_PYTHON = ">=3.7.0"
+REQUIRES_PYTHON = ">=3.6.0"
 VERSION = "0.1.0"
 
 REQUIRED = [
