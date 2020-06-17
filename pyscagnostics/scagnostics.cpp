@@ -19,7 +19,8 @@
         "include_dirs": [
             "pyscagnostics",
             ".\\pyscagnostics",
-            "C:\\Users\\David\\.conda\\envs\\py37\\lib\\site-packages\\numpy\\core\\include"
+            "C:\\Users\\David\\.conda\\envs\\py37\\lib\\site-packages\\numpy\\core\\include",
+            "pyscagnostics/lib"
         ],
         "language": "c++",
         "name": "scagnostics",
@@ -2318,7 +2319,6 @@ static const char __pyx_k_id[] = "id";
 static const char __pyx_k_np[] = "np";
 static const char __pyx_k_c_x[] = "c_x";
 static const char __pyx_k_c_y[] = "c_y";
-static const char __pyx_k_int[] = "int";
 static const char __pyx_k_max[] = "max";
 static const char __pyx_k_min[] = "min";
 static const char __pyx_k_new[] = "__new__";
@@ -2343,6 +2343,7 @@ static const char __pyx_k_class[] = "__class__";
 static const char __pyx_k_dtype[] = "dtype";
 static const char __pyx_k_error[] = "error";
 static const char __pyx_k_flags[] = "flags";
+static const char __pyx_k_int32[] = "int32";
 static const char __pyx_k_isnan[] = "isnan";
 static const char __pyx_k_numpy[] = "numpy";
 static const char __pyx_k_range[] = "range";
@@ -2527,7 +2528,7 @@ static PyObject *__pyx_n_s_getstate;
 static PyObject *__pyx_kp_s_got_differing_extents_in_dimensi;
 static PyObject *__pyx_n_s_id;
 static PyObject *__pyx_n_s_import;
-static PyObject *__pyx_n_s_int;
+static PyObject *__pyx_n_s_int32;
 static PyObject *__pyx_n_s_isnan;
 static PyObject *__pyx_n_s_itemsize;
 static PyObject *__pyx_kp_s_itemsize_0_for_cython_array;
@@ -3388,7 +3389,7 @@ static PyObject *__pyx_pf_11scagnostics_scagnostics(CYTHON_UNUSED PyObject *__py
  * 
  *     cdef double[:] c_x = x             # <<<<<<<<<<<<<<
  *     cdef double[:] c_y = y
- *     cdef int[:] c_length = np.array([x.shape[0]], dtype=np.int)
+ *     cdef int[:] c_length = np.array([x.shape[0]], dtype=np.int32)
  */
   __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_x, PyBUF_WRITABLE); if (unlikely(!__pyx_t_10.memview)) __PYX_ERR(0, 60, __pyx_L1_error)
   __pyx_v_c_x = __pyx_t_10;
@@ -3399,8 +3400,8 @@ static PyObject *__pyx_pf_11scagnostics_scagnostics(CYTHON_UNUSED PyObject *__py
  * 
  *     cdef double[:] c_x = x
  *     cdef double[:] c_y = y             # <<<<<<<<<<<<<<
- *     cdef int[:] c_length = np.array([x.shape[0]], dtype=np.int)
- *     cdef int[:] c_bins = np.array([bins], dtype=np.int)
+ *     cdef int[:] c_length = np.array([x.shape[0]], dtype=np.int32)
+ *     cdef int[:] c_bins = np.array([bins], dtype=np.int32)
  */
   __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_y, PyBUF_WRITABLE); if (unlikely(!__pyx_t_10.memview)) __PYX_ERR(0, 61, __pyx_L1_error)
   __pyx_v_c_y = __pyx_t_10;
@@ -3410,9 +3411,9 @@ static PyObject *__pyx_pf_11scagnostics_scagnostics(CYTHON_UNUSED PyObject *__py
   /* "scagnostics.pyx":62
  *     cdef double[:] c_x = x
  *     cdef double[:] c_y = y
- *     cdef int[:] c_length = np.array([x.shape[0]], dtype=np.int)             # <<<<<<<<<<<<<<
- *     cdef int[:] c_bins = np.array([bins], dtype=np.int)
- *     cdef int[:] c_outlierRmv = np.array([int(remove_outliers)], dtype=np.int)
+ *     cdef int[:] c_length = np.array([x.shape[0]], dtype=np.int32)             # <<<<<<<<<<<<<<
+ *     cdef int[:] c_bins = np.array([bins], dtype=np.int32)
+ *     cdef int[:] c_outlierRmv = np.array([int(remove_outliers)], dtype=np.int32)
  */
   __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -3438,7 +3439,7 @@ static PyObject *__pyx_pf_11scagnostics_scagnostics(CYTHON_UNUSED PyObject *__py
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_int); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
@@ -3456,9 +3457,9 @@ static PyObject *__pyx_pf_11scagnostics_scagnostics(CYTHON_UNUSED PyObject *__py
 
   /* "scagnostics.pyx":63
  *     cdef double[:] c_y = y
- *     cdef int[:] c_length = np.array([x.shape[0]], dtype=np.int)
- *     cdef int[:] c_bins = np.array([bins], dtype=np.int)             # <<<<<<<<<<<<<<
- *     cdef int[:] c_outlierRmv = np.array([int(remove_outliers)], dtype=np.int)
+ *     cdef int[:] c_length = np.array([x.shape[0]], dtype=np.int32)
+ *     cdef int[:] c_bins = np.array([bins], dtype=np.int32)             # <<<<<<<<<<<<<<
+ *     cdef int[:] c_outlierRmv = np.array([int(remove_outliers)], dtype=np.int32)
  *     cdef double[:] c_results = np.zeros(9 + 3 * 1000, dtype=np.double)
  */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
@@ -3480,7 +3481,7 @@ static PyObject *__pyx_pf_11scagnostics_scagnostics(CYTHON_UNUSED PyObject *__py
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_np); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_int); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_int32); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(0, 63, __pyx_L1_error)
@@ -3497,9 +3498,9 @@ static PyObject *__pyx_pf_11scagnostics_scagnostics(CYTHON_UNUSED PyObject *__py
   __pyx_t_11.data = NULL;
 
   /* "scagnostics.pyx":64
- *     cdef int[:] c_length = np.array([x.shape[0]], dtype=np.int)
- *     cdef int[:] c_bins = np.array([bins], dtype=np.int)
- *     cdef int[:] c_outlierRmv = np.array([int(remove_outliers)], dtype=np.int)             # <<<<<<<<<<<<<<
+ *     cdef int[:] c_length = np.array([x.shape[0]], dtype=np.int32)
+ *     cdef int[:] c_bins = np.array([bins], dtype=np.int32)
+ *     cdef int[:] c_outlierRmv = np.array([int(remove_outliers)], dtype=np.int32)             # <<<<<<<<<<<<<<
  *     cdef double[:] c_results = np.zeros(9 + 3 * 1000, dtype=np.double)
  * 
  */
@@ -3524,7 +3525,7 @@ static PyObject *__pyx_pf_11scagnostics_scagnostics(CYTHON_UNUSED PyObject *__py
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_int); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_int32); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_9) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
@@ -3541,8 +3542,8 @@ static PyObject *__pyx_pf_11scagnostics_scagnostics(CYTHON_UNUSED PyObject *__py
   __pyx_t_11.data = NULL;
 
   /* "scagnostics.pyx":65
- *     cdef int[:] c_bins = np.array([bins], dtype=np.int)
- *     cdef int[:] c_outlierRmv = np.array([int(remove_outliers)], dtype=np.int)
+ *     cdef int[:] c_bins = np.array([bins], dtype=np.int32)
+ *     cdef int[:] c_outlierRmv = np.array([int(remove_outliers)], dtype=np.int32)
  *     cdef double[:] c_results = np.zeros(9 + 3 * 1000, dtype=np.double)             # <<<<<<<<<<<<<<
  * 
  *     scag.c_scagnostics(c_x, c_y, c_length, c_bins, c_outlierRmv, c_results)
@@ -20244,7 +20245,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_got_differing_extents_in_dimensi, __pyx_k_got_differing_extents_in_dimensi, sizeof(__pyx_k_got_differing_extents_in_dimensi), 0, 0, 1, 0},
   {&__pyx_n_s_id, __pyx_k_id, sizeof(__pyx_k_id), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
-  {&__pyx_n_s_int, __pyx_k_int, sizeof(__pyx_k_int), 0, 0, 1, 1},
+  {&__pyx_n_s_int32, __pyx_k_int32, sizeof(__pyx_k_int32), 0, 0, 1, 1},
   {&__pyx_n_s_isnan, __pyx_k_isnan, sizeof(__pyx_k_isnan), 0, 0, 1, 1},
   {&__pyx_n_s_itemsize, __pyx_k_itemsize, sizeof(__pyx_k_itemsize), 0, 0, 1, 1},
   {&__pyx_kp_s_itemsize_0_for_cython_array, __pyx_k_itemsize_0_for_cython_array, sizeof(__pyx_k_itemsize_0_for_cython_array), 0, 0, 1, 0},
@@ -20370,8 +20371,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__3);
 
   /* "scagnostics.pyx":65
- *     cdef int[:] c_bins = np.array([bins], dtype=np.int)
- *     cdef int[:] c_outlierRmv = np.array([int(remove_outliers)], dtype=np.int)
+ *     cdef int[:] c_bins = np.array([bins], dtype=np.int32)
+ *     cdef int[:] c_outlierRmv = np.array([int(remove_outliers)], dtype=np.int32)
  *     cdef double[:] c_results = np.zeros(9 + 3 * 1000, dtype=np.double)             # <<<<<<<<<<<<<<
  * 
  *     scag.c_scagnostics(c_x, c_y, c_length, c_bins, c_outlierRmv, c_results)

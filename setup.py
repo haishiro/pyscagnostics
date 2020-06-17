@@ -1,4 +1,3 @@
-import glob
 import os
 
 try:
@@ -30,7 +29,7 @@ extensions = [
         name="scagnostics",
         language="c++",
         sources=[os.path.join(package_dir, "scagnostics" + ext),],
-        include_dirs=[np.get_include(), *glob.glob(package_dir + "/lib/*/cpp")],
+        include_dirs=[np.get_include(), package_dir + "/lib"],
         define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
     )
 ]
