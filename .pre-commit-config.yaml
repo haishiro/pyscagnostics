@@ -4,3 +4,10 @@ repos:
     hooks:
       - id: flake8
         additional_dependencies: ["flake8-mypy", "flake8-import-order"]
+      - id: flake8
+        name: flake8-pyx
+        language: python_venv
+        files: \.(pyx|pxd)$
+        types:
+          - file
+        args:  [--append-config=.flake8-pyx]
