@@ -1,6 +1,8 @@
-#distutils: language=c++
-#cython: language_level=3
-#cython: binding=True
+# distutils: language=c++
+# cython: language_level=3
+# cython: binding=True
+
+from typing import Union, Tuple
 
 cimport pyscagnostics.scagnostics as scag
 import numpy as np
@@ -17,7 +19,12 @@ MEASURE_NAMES = [
     "Monotonic"
 ]
 
-def scagnostics(*args, bins=50, remove_outliers=True):
+
+def scagnostics(
+    *args: Union[list, np.ndarray],
+    bins: int=50,
+    remove_outliers: bool=True
+) -> Tuple[dict, np.ndarray]:
     """Compute scatterplot diagnostic (scagnostic) measures
 
     Args:
@@ -71,5 +78,5 @@ def scagnostics(*args, bins=50, remove_outliers=True):
     s = result[:9]
     measures = {m[0]: m[1] for m in zip(MEASURE_NAMES, s)}
     bins = result[10:(10 + n * 3)].reshape((3, -1))
-    
+
     return measures, bins
