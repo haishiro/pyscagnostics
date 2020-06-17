@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import pytest
-
 import pyscagnostics
 
 
@@ -31,3 +30,7 @@ def test_pandas_dataframe():
     y = np.random.uniform(0, 1, 100)
     with pytest.raises(NotImplementedError):
         pyscagnostics.scagnostics(pd.DataFrame({"x": x, "y": y}))
+
+
+if __name__ == "__main__":
+    test_numpy_arrays()

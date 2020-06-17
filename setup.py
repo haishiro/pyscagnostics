@@ -1,4 +1,3 @@
-import glob
 import os
 
 try:
@@ -9,7 +8,6 @@ except ModuleNotFoundError:
     USE_CYTHON = False
 
 import numpy as np
-
 from setuptools import find_packages, setup
 from setuptools.extension import Extension
 
@@ -17,7 +15,7 @@ from setuptools.extension import Extension
 NAME = "pyscagnostics"
 DESCRIPTION = "Graph theoretic scatterplot diagnostics"
 URL = "https://github.com/haishiro/pyscagnostics"
-REQUIRES_PYTHON = ">=3.7.0"
+REQUIRES_PYTHON = ">=3.6.0"
 VERSION = "0.1.0"
 
 REQUIRED = [
@@ -31,8 +29,9 @@ extensions = [
         name="scagnostics",
         language="c++",
         sources=[os.path.join(package_dir, "scagnostics" + ext),],
-        include_dirs=[np.get_include(), *glob.glob(package_dir + "/lib/*/cpp")],
+        include_dirs=[np.get_include(), package_dir + "/lib"],
         define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
+        extra_compile_args=['-std=c++11'],
     )
 ]
 if USE_CYTHON:
