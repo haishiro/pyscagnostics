@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8]
 
     steps:
     - uses: actions/checkout@v1
@@ -60,4 +60,67 @@ jobs:
     - name: Test
       run: |
         source .venv/bin/activate
+        pytest
+  
+
+  test-macos:
+    needs: lint
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Create virtual environment
+      run: |
+        python -m venv .venv
+    - name: Set up cache
+      uses: actions/cache@v1
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('dev-requirements.txt') }}
+    - name: Install dependencies
+      run: |
+        source .venv/bin/activate
+        pip install -r dev-requirements.txt
+        pip install .
+    - name: Test
+      run: |
+        source .venv/bin/activate
+        pytest
+
+  test-windows:
+    needs: lint
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Create virtual environment
+      run: |
+        python -m venv .venv
+    - name: Set up cache
+      uses: actions/cache@v1
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('dev-requirements.txt') }}
+    - name: Install dependencies
+      run: |
+        .venv/Scripts/activate
+        pip install -r dev-requirements.txt
+        pip install .
+    - name: Test
+      run: |
+        .venv/Scripts/activate
         pytest
