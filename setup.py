@@ -48,6 +48,7 @@ setup(
     include_package_data=True,
     license="GPL",
     ext_modules=extensions,
+    keywords="data analysis scatterplot diagnostics",
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -55,7 +56,9 @@ setup(
         "Topic :: Scientific/Engineering :: Information Analysis",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
