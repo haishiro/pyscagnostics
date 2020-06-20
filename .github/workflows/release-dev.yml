@@ -5,9 +5,9 @@ on:
     branches: [feature/publish-pypi]
 
 jobs:
-  build-n-publish:
-    name: Build and publish to TestPyPI
-    runs-on: ubuntu-18.04
+  release-windows:
+    name: Build and publish windows wheel to TestPyPI
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@master
