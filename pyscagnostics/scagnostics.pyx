@@ -3,6 +3,7 @@
 # cython: binding=True
 
 from typing import Union, Tuple
+from itertools import combinations
 
 cimport pyscagnostics.scagnostics as scag
 import numpy as np
@@ -21,7 +22,7 @@ MEASURE_NAMES = [
 
 
 def scagnostics(
-    *args: Union[list, np.ndarray],
+    *args,
     bins: int=50,
     remove_outliers: bool=True
 ) -> Tuple[dict, np.ndarray]:
@@ -49,10 +50,36 @@ def scagnostics(
         else:
             x = np.fromiter(x, dtype=np.double)
             y = np.fromiter(y, dtype=np.double)
+
+            return _scagnostic_xy(
+                x,
+                y,
+                bins=bins,
+                remove_outliers=remove_outliers
+            )
     elif len(args) == 1:
-        raise NotImplementedError("Pandas DataFrames are not yet supported")
+        df = args[0]
+        col_pairs = combinations(df.columns, 2)
+
+        return (
+            _scagnostic_xy(
+                df[x].to_numpy(),
+                df[y].to_numpy(),
+                bins=bins,
+                remove_outliers=remove_outliers
+            )
+            for x, y in col_pairs
+        )
     else:
         raise ValueError("Accepted input formats are either a single Pandas DataFrame or 2 arrays")
+
+
+def _scagnostic_xy(
+    x: Union[list, np.ndarray],
+    y: Union[list, np.ndarray],
+    bins: int=50,
+    remove_outliers: bool=True
+) -> Tuple[dict, np.ndarray]:
 
     if x.shape != y.shape:
         raise ValueError("x and y must have the same shape")
