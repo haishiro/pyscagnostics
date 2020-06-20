@@ -1,1 +1,1 @@
-from scagnostics import scagnostics # noqa
+from scagnostics import scagnostics, measure_names # noqa
