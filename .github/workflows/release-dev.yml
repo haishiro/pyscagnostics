@@ -103,7 +103,7 @@ jobs:
         path: dist
     - name: Move to dist/
       run: |
-        cp -v dist/**/*-manylinux* dist/ &&
+        cp -v dist/**/*-manylinux*.whl dist/ &&
         cp -v dist/**/*win* dist/ &&
         cp -v dist/**/*macos* dist/ &&
         rm -rf dist/*/
