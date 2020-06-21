@@ -87,7 +87,8 @@ jobs:
         python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38'
         build-requirements: 'cython numpy'
     - name: Delete linux wheel
-      run: sudo rm -rf wheelhouse/*-linux*
+      run: sudo rm -rf wheelhouse/*.linux* &&
+           sudo rm -rf wheelhouse/*-linux*
     - uses: actions/upload-artifact@v2
       with:
         name: linux-wheel
