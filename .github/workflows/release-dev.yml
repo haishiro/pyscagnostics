@@ -77,17 +77,15 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: Build linux wheels (x86_64)
-      uses: RalfG/python-wheels-manylinux-build@v0.2.2-manylinux2010_x86_64
+      uses: RalfG/python-wheels-manylinux-build@v0.2.2-manylinux1_x86_64
       with:
         python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38'
         build-requirements: 'cython numpy'
     - name: Build linux wheels (i686)
-      uses: RalfG/python-wheels-manylinux-build@v0.2.2-manylinux2010_i686
+      uses: RalfG/python-wheels-manylinux-build@v0.2.2-manylinux1_i686
       with:
         python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38'
         build-requirements: 'cython numpy'
-    - name: Drop linux tagged wheels
-      run: rm -rf wheelhouse/*-linux*
     - uses: actions/upload-artifact@v2
       with:
         name: linux-wheel
@@ -105,7 +103,7 @@ jobs:
         path: dist
     - name: Move to dist/
       run: |
-        cp -v dist/**/*manylinux* dist/ &&
+        cp -v dist/**/*-manylinux* dist/ &&
         cp -v dist/**/*win* dist/ &&
         cp -v dist/**/*macos* dist/ &&
         rm -rf dist/*/
