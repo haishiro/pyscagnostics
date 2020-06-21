@@ -63,6 +63,12 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@v2
       with:
+        name: windows-wheel
+        path: dist
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      with:
+        name: linux-wheel
         path: dist
     - name: Publish to Test PyPI
       uses: pypa/gh-action-pypi-publish@master
