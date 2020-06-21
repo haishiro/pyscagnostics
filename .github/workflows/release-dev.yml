@@ -45,14 +45,10 @@ jobs:
       with:
         python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38'
         build-requirements: 'cython numpy'
-    - name: Move to dist/
-      run: |
-        mkdir -p dist
-        cp -v wheelhouse/*-manylinux1_x86_64.whl dist/
     - uses: actions/upload-artifact@v2
       with:
         name: linux-wheel
-        path: dist/*
+        path: wheelhouse/*
   
   publish:
     name: Publish to Test PyPI
@@ -63,13 +59,10 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@v2
       with:
-        name: windows-wheel
         path: dist
-    - uses: actions/checkout@v2
-    - uses: actions/download-artifact@v2
-      with:
-        name: linux-wheel
-        path: dist
+    - name: Move to dist/
+      run: |
+        cp -v dist/**/* dist/
     - name: Publish to Test PyPI
       uses: pypa/gh-action-pypi-publish@master
       with:
