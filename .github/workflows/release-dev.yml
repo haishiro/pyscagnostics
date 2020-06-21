@@ -40,7 +40,7 @@ jobs:
 
     steps: 
     - uses: actions/checkout@v2
-    - name: Build manylinux1 Python wheels
+    - name: Build linux wheels
       uses: RalfG/python-wheels-manylinux-build@v0.2.2-manylinux2010_x86_64
       with:
         python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38'
@@ -62,7 +62,8 @@ jobs:
         path: dist
     - name: Move to dist/
       run: |
-        cp -v dist/**/* dist/
+        cp -v dist/**/* dist/ &&
+        rm -rf dist/*/
     - name: Publish to Test PyPI
       uses: pypa/gh-action-pypi-publish@master
       with:
