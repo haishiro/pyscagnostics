@@ -81,10 +81,6 @@ jobs:
       with:
         python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38'
         build-requirements: 'cython numpy'
-    - uses: actions/upload-artifact@v2
-      with:
-        name: linux-wheel-x86_64
-        path: wheelhouse/*
     - name: Build linux wheels (i686)
       uses: RalfG/python-wheels-manylinux-build@v0.2.2-manylinux2010_i686
       with:
@@ -92,7 +88,7 @@ jobs:
         build-requirements: 'cython numpy'
     - uses: actions/upload-artifact@v2
       with:
-        name: linux-wheel-i686
+        name: linux-wheel
         path: wheelhouse/*
   
   publish:
