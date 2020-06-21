@@ -20,7 +20,7 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     LONG_DESCRIPTION = f.read()
 URL = "https://github.com/haishiro/pyscagnostics"
 REQUIRES_PYTHON = ">=3.6.0"
-VERSION = "0.1.0a2"
+VERSION = "0.1.0a3"
 
 REQUIRED = [
     "numpy>=1.18.1",
