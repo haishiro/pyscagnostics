@@ -14,9 +14,13 @@ from setuptools.extension import Extension
 
 NAME = "pyscagnostics"
 DESCRIPTION = "Graph theoretic scatterplot diagnostics"
+
+this_directory = os.path.abspath(os.path.dirname(__file__))
+with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    LONG_DESCRIPTION = f.read()
 URL = "https://github.com/haishiro/pyscagnostics"
 REQUIRES_PYTHON = ">=3.6.0"
-VERSION = "0.1.0"
+VERSION = "0.1.0a1"
 
 REQUIRED = [
     "numpy>=1.18.1",
@@ -42,6 +46,8 @@ setup(
     name=NAME,
     version=VERSION,
     description=DESCRIPTION,
+    long_description=LONG_DESCRIPTION,
+    long_description_content_type='text/markdown',
     python_requires=REQUIRES_PYTHON,
     url=URL,
     install_requires=REQUIRED,
