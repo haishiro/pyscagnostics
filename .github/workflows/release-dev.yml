@@ -5,8 +5,8 @@ on:
     branches: [feature/publish-pypi]
 
 jobs:
-  release-windows:
-    name: Build and publish windows wheel to TestPyPI
+  build-windows:
+    name: Build Windows wheel
     runs-on: windows-latest
 
     steps:
@@ -29,8 +29,41 @@ jobs:
         --binary
         --out-dir dist/
         .
+    - uses: actions/upload-artifact@v2
+      with:
+        path: dist/*
+
+  build-linux:
+    name: Build linux wheel
+    runs-on: ubuntu-latest
+
+    steps: 
+    - uses: actions/checkout@v2
+    - name: Build manylinux1 Python wheels
+      uses: RalfG/python-wheels-manylinux-build@v0.2.2-manylinux2010_x86_64
+      with:
+        python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38'
+        build-requirements: 'cython numpy'
+    - name: Move to dist/
+      run: |
+        mkdir -p dist
+        cp -v wheelhouse/*-manylinux1_x86_64.whl dist/
+    - uses: actions/upload-artifact@v2
+      with:
+        path: dist/*
+  
+  publish:
+    name: Publish to Test PyPI
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      with:
+        path: dist
     - name: Publish to Test PyPI
       uses: pypa/gh-action-pypi-publish@master
       with:
         password: ${{ secrets.test_pypi_password }}
         repository_url: https://test.pypi.org/legacy/
+    
