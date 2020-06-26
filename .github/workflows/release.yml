@@ -15,13 +15,11 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
-      - name: Get latest commit
-        run: hash=`git log -n 1 --pretty=format:"%H" origin master`
       - name: Get version
         run: version="v$(cat VERSION)"
       - name: Tag commit
         run: |
-          git tag -a $version $hash
+          git tag -a $version $GITHUB_SHA
           git push origin $version
   build-windows:
     name: Build Windows wheel
