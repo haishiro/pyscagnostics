@@ -1,0 +1,23 @@
+name: pre-release
+
+on: 
+  pull_request:
+    branches: [master]
+
+jobs:
+  check_version:
+    name: Check version bump
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Get version
+        run: |
+          version="v$(cat VERSION)"
+      - name: Check version
+        run: |
+          if git ls-remote --tags origin | grep -q $version; then
+            exit 1
+          else
+            exit 0
+          fi
