@@ -11,16 +11,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - name: Set up Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
       - name: Get version
         run: |
-          VERSION ="v$(cat VERSION)"
+          version="v$(cat VERSION)"
       - name: Check version
         run: |
-          if git ls-remote --tags origin | grep -q $VERSION; then
+          if git ls-remote --tags origin | grep -q $version; then
             exit 0
           else
             exit 1
