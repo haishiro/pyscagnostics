@@ -15,11 +15,13 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
+      - name: Get latest commit
+        run: hash=`git log -n 1 --pretty=format:"%H" origin master`
       - name: Get version
         run: version="v$(cat VERSION)"
       - name: Tag commit
         run: |
-          git tag $version
+          git tag -a $version $hash
           git push origin $version
   build-windows:
     name: Build Windows wheel
@@ -111,9 +113,9 @@ jobs:
         path: wheelhouse/*
   
   publish:
-    name: Publish to Test PyPI
+    name: Publish to PyPI
     runs-on: ubuntu-latest
-    needs: ['build-windows', 'build-linux', 'build-macos']
+    needs: ['tag-release', 'build-windows', 'build-linux', 'build-macos']
 
     steps:
     - uses: actions/checkout@v2
