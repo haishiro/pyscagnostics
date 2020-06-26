@@ -20,7 +20,8 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     LONG_DESCRIPTION = f.read()
 URL = "https://github.com/haishiro/pyscagnostics"
 REQUIRES_PYTHON = ">=3.6.0"
-VERSION = "0.1.0a3"
+with open('VERSION') as version_file:
+    VERSION = version_file.read().strip()
 
 REQUIRED = [
     "numpy>=1.18.1",

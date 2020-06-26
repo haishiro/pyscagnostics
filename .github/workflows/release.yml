@@ -1,10 +1,26 @@
-name: release-dev
+name: release
 
 on: 
   push:
-    branches: [feature/publish-pypi]
+    branches: [master]
 
 jobs:
+  tag-release:
+    name: Tag new release
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Get version
+        run: VERSION="v${python setup.py --version}"
+      - name: Tag commit
+        run: |
+          git tag $VERSION
+          git push origin $VERSION
   build-windows:
     name: Build Windows wheel
     runs-on: windows-latest
@@ -110,10 +126,9 @@ jobs:
         cp -v dist/**/*win* dist/ &&
         cp -v dist/**/*macos* dist/ &&
         rm -rf dist/*/
-    - name: Publish to Test PyPI
+    - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@master
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
       with:
-        password: ${{ secrets.test_pypi_password }}
-        repository_url: https://test.pypi.org/legacy/
-        skip_existing: true
+        password: ${{ secrets.pypi_password }}
     

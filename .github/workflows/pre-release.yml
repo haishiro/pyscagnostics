@@ -1,0 +1,26 @@
+name: pre-release
+
+on: 
+  pull_request:
+    branches: [master]
+
+jobs:
+  check_version:
+    name: Check version bump
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Get version
+        run: VERSION="v${python setup.py --version}"
+      - name: Check version
+        run: |
+          if git ls-remote --tags origin | grep -q $VERSION; then
+            exit 0
+          else
+            exit 1
+          fi
