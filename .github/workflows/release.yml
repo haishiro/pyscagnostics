@@ -19,7 +19,8 @@ jobs:
         run: version="v$(cat VERSION)"
       - name: Tag commit
         run: |
-          git tag -a $version $GITHUB_SHA
+          git config --global user.name $GITHUB_ACTOR
+          git tag -a $version -m version $GITHUB_SHA
           git push origin $version
   build-windows:
     name: Build Windows wheel
