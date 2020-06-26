@@ -16,11 +16,11 @@ jobs:
         with:
           python-version: 3.7
       - name: Get version
-        run: VERSION="v${python setup.py --version}"
+        run: version="v$(cat VERSION)"
       - name: Tag commit
         run: |
-          git tag $VERSION
-          git push origin $VERSION
+          git tag $version
+          git push origin $version
   build-windows:
     name: Build Windows wheel
     runs-on: windows-latest
