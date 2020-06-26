@@ -1,13 +1,6 @@
-pyscagnostics 0.1.0 --------------------
+pyscagnostics CHANGELOG
+=========================
 
-* Convert wrapper to Python
-
-
-binostics 0.1.2 --------------------
-
-* changed package name
-* removed rggobi functionalities
-
-scagnostics 0.1.1 --------------------
-
-* silently drop missing values when calculating scagnostics 
+v0.1.0a1
+--------
+- Python package alpha release
