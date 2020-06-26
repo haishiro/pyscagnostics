@@ -16,7 +16,8 @@ jobs:
         with:
           python-version: 3.7
       - name: Get version
-        run: VERSION="v${python setup.py --version}"
+        run: |
+          VERSION ="v$(cat VERSION)"
       - name: Check version
         run: |
           if git ls-remote --tags origin | grep -q $VERSION; then
