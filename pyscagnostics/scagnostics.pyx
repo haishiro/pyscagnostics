@@ -86,16 +86,8 @@ def scagnostics(
                 counts for the hex-bin grid. The x and y coordinates are re-scaled
                 between 0 and 1000. This is returned for debugging and inspection purposes.
 
-<<<<<<< HEAD
-        If the input is a DataFrame, the output will be a generator yielding a dictionaries of
-        scagnostic results for each column pair:
-            {
-                (x, y): (measures, bins)
-            }
-=======
         If the input is a DataFrame, the output will be a generator yielding scagnostics
         for each combination of column pairs
->>>>>>> master
     """
     if len(args) == 2:
         x, y = args
@@ -119,23 +111,12 @@ def scagnostics(
             col_pairs = combinations(df.columns, 2)
 
             return (
-<<<<<<< HEAD
-                {
-                    (x, y): _scagnostic_xy(
-                        df[x].to_numpy(),
-                        df[y].to_numpy(),
-                        bins=bins,
-                        remove_outliers=remove_outliers
-                    )
-                }
-=======
                 _scagnostic_xy(
                     df[x].to_numpy(),
                     df[y].to_numpy(),
                     bins=bins,
                     remove_outliers=remove_outliers
                 )
->>>>>>> master
                 for x, y in col_pairs
             )
         except AttributeError:
