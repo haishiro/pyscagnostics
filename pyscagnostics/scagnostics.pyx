@@ -86,16 +86,11 @@ def scagnostics(
                 counts for the hex-bin grid. The x and y coordinates are re-scaled
                 between 0 and 1000. This is returned for debugging and inspection purposes.
 
-<<<<<<< HEAD
         If the input is a DataFrame, the output will be a generator yielding a dictionaries of
         scagnostic results for each column pair:
             {
                 (x, y): (measures, bins)
             }
-=======
-        If the input is a DataFrame, the output will be a generator yielding scagnostics
-        for each combination of column pairs
->>>>>>> master
     """
     if len(args) == 2:
         x, y = args
