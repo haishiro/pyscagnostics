@@ -1,34 +1,11 @@
 name: release
 
 on: 
-<<<<<<< HEAD
   release:
     types:
       - created
 
 jobs:
-=======
-  push:
-    branches: [master]
-
-jobs:
-  tag-release:
-    name: Tag new release
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@master
-      - name: Set up Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
-      - name: Get version
-        run: version="v$(cat VERSION)"
-      - name: Tag commit
-        run: |
-          git tag $version
-          git push origin $version
->>>>>>> stage
   build-windows:
     name: Build Windows wheel
     runs-on: windows-latest
@@ -136,10 +113,6 @@ jobs:
         rm -rf dist/*/
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@master
-<<<<<<< HEAD
-=======
-      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
->>>>>>> stage
       with:
         password: ${{ secrets.pypi_password }}
     
