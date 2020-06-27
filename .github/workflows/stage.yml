@@ -97,7 +97,7 @@ jobs:
   publish:
     name: Publish to Test PyPI
     runs-on: ubuntu-latest
-    needs: ['tag', 'build-windows', 'build-linux', 'build-macos']
+    needs: ['build-windows', 'build-linux', 'build-macos']
 
     steps:
     - uses: actions/checkout@v2
