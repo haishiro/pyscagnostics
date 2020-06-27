@@ -72,7 +72,10 @@ def test_pandas_result_shape(test_pandas_input):
 def test_pandas_result_properties(test_pandas_input):
     results = test_pandas_input[0]
     for result in results:
-        m, bins = result
+        assert isinstance(result, dict)
+        assert len(result.items()) == 1, "More than one result was found in the dictionary"
+        assert isinstance(list(result.keys())[0], tuple), "Dictionary key is not a tuple"
+        m, bins = list(result.values())[0]
         assert isinstance(m, dict), "metric scores is not a dictionary"
         assert len(m.keys()) == 9, "scores dict does not have exactly 9 metrics"
         assert isinstance(bins, np.ndarray), "binned data is not a numpy array"
