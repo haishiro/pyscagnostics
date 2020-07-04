@@ -114,14 +114,16 @@ def scagnostics(
             col_pairs = combinations(df.columns, 2)
 
             return (
-                {
-                    (x, y): _scagnostic_xy(
+                (
+                    x,
+                    y,
+                    _scagnostic_xy(
                         df[x].to_numpy(),
                         df[y].to_numpy(),
                         bins=bins,
                         remove_outliers=remove_outliers
                     )
-                }
+                )
                 for x, y in col_pairs
             )
         except AttributeError:
