@@ -1,6 +1,10 @@
 pyscagnostics CHANGELOG
 =========================
 
+v0.1.0a4
+--------
+- Fixed docstrings
+
 v0.1.0a3
 --------
 - Return tuples instead of dict for Pandas DataFrame input
