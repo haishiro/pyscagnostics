@@ -49,7 +49,7 @@ def scagnostics(
             x = np.random.uniform(0, 1, 100)
             y = np.random.uniform(0, 1, 100)
 
-            measures, bins = pyscagnostics.scagnostics(x, y)
+            measures, bins = scagnostics(x, y)
         ```
 
         A Pandas DataFrame can also be passed as the singular required argument. The
@@ -69,8 +69,9 @@ def scagnostics(
                 'z': z
             })
 
-            results = pyscagnostics.scagnostics(df)
-            for measures, bins in results:
+            results = scagnostics(df)
+            for x, y, result in results:
+                measures, bins = result
                 print(measures)
         ```
 
@@ -88,11 +89,12 @@ def scagnostics(
             measures is a dict with scores for each of 9 scagnostic measures.
                 See pyscagnostics.measure_names for a list of measures
 
-            bins is a 3 x n numpy array of x-coordinates, y-coordinates, and 
+            bins is a 3 x n numpy array of x-coordinates, y-coordinates, and
                 counts for the hex-bin grid. The x and y coordinates are re-scaled
                 between 0 and 1000. This is returned for debugging and inspection purposes.
 
-        If the input is a DataFrame, the output will be a generator yielding scagnostics
-        for each combination of column pairs
+        If the input is a DataFrame, the output will be a generator yielding a tuples of
+        scagnostic results for each column pair:
+            (x, y, (measures, bins))
     """
 ```
